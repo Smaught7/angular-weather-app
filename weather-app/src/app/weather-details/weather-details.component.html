@@ -1,7 +1,7 @@
 <p *ngIf="isLoading && !errorMessage">LOADING...</p>
 <p>{{ weatherData?.name }}</p>
 <p>{{ weatherData?.main?.humidity }}</p>
-<p>{{ timezoneOffset }}</p>
+<p>{{ setDateFromTimezone() }}</p>
 <div class="alert alert-danger" *ngIf="errorMessage">
   <h1>An error Occurred!</h1>
   <p>{{ errorMessage }}</p>

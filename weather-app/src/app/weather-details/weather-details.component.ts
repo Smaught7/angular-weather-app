@@ -1,6 +1,6 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Weather } from '../weather.model';
-import { Subject, Subscription, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-weather-details',
@@ -9,12 +9,12 @@ import { Subject, Subscription, takeUntil } from 'rxjs';
 })
 export class WeatherDetailsComponent implements OnInit, OnDestroy {
   @Input() weatherData!: Weather;
-  @Input() timezoneOffset!: string | null;
   @Input() isLoading!: boolean;
   @Input() error!: Subject<string | null>;
 
   public errorMessage!: string | null;
   private destroy$ = new Subject<void>();
+  private readonly warsawTimezoneOffset = 7200;
 
   constructor() {}
 
@@ -23,6 +23,35 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
       this.errorMessage = error;
     });
   }
+
+  setDateFromTimezone() {
+    if (this.weatherData && this.weatherData.timezone) {
+      const currentDate = new Date();
+      const timezoneOffset =
+        this.weatherData.timezone / 3600 - this.warsawTimezoneOffset / 3600;
+
+      const timeOffsetDate = currentDate.getHours() + timezoneOffset;
+
+      if (timeOffsetDate < 0) {
+        const offsetFromMidnight = 24 + timeOffsetDate;
+        //this.calculateTimeOfDay(offsetFromMidnight);
+        return `${offsetFromMidnight}:${currentDate.getMinutes()}`;
+      }
+
+      //this.calculateTimeOfDay(timeOffsetDate);
+      return `${timeOffsetDate}:${currentDate.getMinutes()}`;
+    }
+
+    return null;
+  }
+
+  // calculateTimeOfDay(hours: number) {
+  //   let timeOfDay;
+  //   switch (hours) {
+  //     case hours < 6 && hours >= 6:
+  //       timeOfDay = 'night'
+  //   }
+  // }
 
   ngOnDestroy(): void {
     this.destroy$.next();
