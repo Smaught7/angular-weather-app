@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { WeatherService } from '../weather.service';
 
 @Component({
@@ -7,11 +7,13 @@ import { WeatherService } from '../weather.service';
   styleUrls: ['./search-city.component.sass'],
 })
 export class SearchCityComponent {
+  @Output() newItemEvent = new EventEmitter<string>();
   public cityName = '';
 
   constructor(public weatherService: WeatherService) {}
 
   onSubmit() {
+    this.newItemEvent.emit(this.cityName);
     this.cityName = '';
   }
 }

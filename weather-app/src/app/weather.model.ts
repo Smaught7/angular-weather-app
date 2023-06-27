@@ -1,6 +1,7 @@
 export interface Weather {
   id: number;
   name: string;
+  timezone: number;
   main: Main;
   wind: Wind;
 }
