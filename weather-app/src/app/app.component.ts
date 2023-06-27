@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from './weather.service';
 import { Weather } from './weather.model';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,11 @@ import { Weather } from './weather.model';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public data!: Weather;
+  public weatherData!: Weather;
   public city = 'Warsaw';
   private readonly warsawTimezoneOffset = 7200;
+  isLoading = false;
+  error = new Subject<string | null>();
 
   constructor(private weatherService: WeatherService) {}
 
@@ -25,10 +28,10 @@ export class AppComponent implements OnInit {
   }
 
   setDateFromTimezone() {
-    if (this.data && this.data.timezone) {
+    if (this.weatherData && this.weatherData.timezone) {
       const currentDate = new Date();
       const timezoneOffset =
-        this.data.timezone / 3600 - this.warsawTimezoneOffset / 3600;
+        this.weatherData.timezone / 3600 - this.warsawTimezoneOffset / 3600;
 
       const timeOffsetDate = currentDate.getHours() + timezoneOffset;
 
@@ -44,10 +47,17 @@ export class AppComponent implements OnInit {
   }
 
   private fetchWeatherData() {
-    this.weatherService.fetchData(this.city).subscribe((data) => {
-      this.data = data;
-      console.log(this.data);
-      this.setDateFromTimezone();
-    });
+    this.weatherService.fetchData(this.city).subscribe(
+      (data) => {
+        this.isLoading = false;
+        this.weatherData = data;
+        this.setDateFromTimezone();
+      },
+      (error) => {
+        this.isLoading = false;
+        console.log(error.message);
+        this.error.next(error.message);
+      }
+    );
   }
 }
