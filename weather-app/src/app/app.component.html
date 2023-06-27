@@ -1,5 +1,10 @@
-<h1>Weather App!</h1>
-<app-search-city (newItemEvent)="setCity($event)"></app-search-city>
-<p>{{ data?.name }}</p>
-<p>{{ data?.main?.humidity }}</p>
-<p>{{ setDateFromTimezone() }}</p>
+<div
+  class="container-fluid d-flex justify-content-center align-items-center flex-column weather-container"
+>
+  <h1>Weather App!</h1>
+  <app-search-city (newItemEvent)="setCity($event)"></app-search-city>
+  <app-weather-details
+    [weatherData]="data"
+    [timezoneOffset]="setDateFromTimezone()"
+  ></app-weather-details>
+</div>

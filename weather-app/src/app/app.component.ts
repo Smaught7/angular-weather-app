@@ -5,12 +5,12 @@ import { Weather } from './weather.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass'],
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   public data!: Weather;
   public city = 'Warsaw';
-  public warsawTimezoneOffset = 7200;
+  private readonly warsawTimezoneOffset = 7200;
 
   constructor(private weatherService: WeatherService) {}
 
