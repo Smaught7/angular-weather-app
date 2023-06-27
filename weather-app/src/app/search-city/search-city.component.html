@@ -1,0 +1,6 @@
+<div class="search">
+  <form #search="ngForm" (submit)="onSubmit()">
+    <input type="text" name="text" [(ngModel)]="cityName" />
+  </form>
+  {{ cityName }}
+</div>
