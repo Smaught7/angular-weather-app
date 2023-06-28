@@ -1,4 +1,14 @@
 .weather-container {
   background-color: #474787;
   height: 100vh;
+
+  .card-container {
+    background: #706fd3;
+
+    h1 {
+      color: #fff;
+      text-align: center;
+      margin: 0;
+    }
+  }
 }

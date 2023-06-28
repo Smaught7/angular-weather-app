@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Weather } from '../weather.model';
 import { Subject, takeUntil } from 'rxjs';
+import { WeatherService } from '../weather.service';
 
 @Component({
   selector: 'app-weather-details',
@@ -16,7 +17,7 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   private readonly warsawTimezoneOffset = 7200;
 
-  constructor() {}
+  constructor(public weatherService: WeatherService) {}
 
   ngOnInit(): void {
     this.error.pipe(takeUntil(this.destroy$)).subscribe((error) => {
@@ -34,24 +35,20 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
 
       if (timeOffsetDate < 0) {
         const offsetFromMidnight = 24 + timeOffsetDate;
-        //this.calculateTimeOfDay(offsetFromMidnight);
+        this.weatherService.calculateTimeOfDay(offsetFromMidnight);
         return `${offsetFromMidnight}:${currentDate.getMinutes()}`;
       }
 
-      //this.calculateTimeOfDay(timeOffsetDate);
+      this.weatherService.calculateTimeOfDay(timeOffsetDate);
       return `${timeOffsetDate}:${currentDate.getMinutes()}`;
     }
 
     return null;
   }
 
-  // calculateTimeOfDay(hours: number) {
-  //   let timeOfDay;
-  //   switch (hours) {
-  //     case hours < 6 && hours >= 6:
-  //       timeOfDay = 'night'
-  //   }
-  // }
+  onHandleError() {
+    this.errorMessage = null;
+  }
 
   ngOnDestroy(): void {
     this.destroy$.next();
