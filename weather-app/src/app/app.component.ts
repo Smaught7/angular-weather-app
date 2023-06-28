@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
       (data) => {
         this.isLoading = false;
         this.weatherData = data;
+        console.log(this.weatherData);
       },
       (error) => {
         this.isLoading = false;

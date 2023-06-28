@@ -1,10 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Weather } from '../weather.model';
 import { Subject, takeUntil } from 'rxjs';
 import { WeatherService } from '../weather.service';
@@ -42,11 +36,15 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
       if (timeOffsetDate < 0) {
         const offsetFromMidnight = 24 + timeOffsetDate;
         this.weatherService.calculateTimeOfDay(offsetFromMidnight);
-        return `${offsetFromMidnight}:${currentDate.getMinutes()}`;
+        return `${offsetFromMidnight
+          .toString()
+          .padStart(2, '0')}:${currentDate.getMinutes()}`;
       }
 
       this.weatherService.calculateTimeOfDay(timeOffsetDate);
-      return `${timeOffsetDate}:${currentDate.getMinutes()}`;
+      return `${timeOffsetDate
+        .toString()
+        .padStart(2, '0')}:${currentDate.getMinutes()}`;
     }
 
     return null;

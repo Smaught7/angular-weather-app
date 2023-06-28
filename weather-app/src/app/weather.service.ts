@@ -31,11 +31,11 @@ export class WeatherService {
   calculateTimeOfDay(hours: number) {
     if (hours <= 6 && hours >= 0) {
       this.timeOfDay = 'night';
-    } else if (hours > 6 && hours <= 12) {
+    } else if (hours > 6 && hours < 12) {
       this.timeOfDay = 'morning';
-    } else if (hours > 12 && hours <= 18) {
+    } else if (hours >= 12 && hours < 18) {
       this.timeOfDay = 'afternoon';
-    } else if (hours > 18 && hours <= 24) {
+    } else if (hours >= 18 && hours < 24) {
       this.timeOfDay = 'evening';
     }
 

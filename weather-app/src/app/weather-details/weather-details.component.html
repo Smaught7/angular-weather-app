@@ -1,12 +1,38 @@
-<div class="main-information" [ngClass]="weatherService.timeOfDay">
-  <p *ngIf="isLoading && !errorMessage">LOADING...</p>
-  <p>{{ weatherData?.name }}</p>
-  <!-- <p>{{weatherData}}</p> -->
-  <p>{{ setDateFromTimezone() }}</p>
-</div>
-<div class="other-informations">
-  <p>{{ weatherData?.main?.humidity }}</p>
-  <div class="alert alert-danger" *ngIf="errorMessage">
+<div class="data-container">
+  <div
+    class="main-information d-flex flex-column justify-content-center align-items-center"
+    [ngClass]="weatherService.timeOfDay"
+  >
+    <p *ngIf="isLoading && !errorMessage">LOADING...</p>
+    <p>{{ weatherData?.name }}</p>
+    <p>{{ setDateFromTimezone() }}</p>
+  </div>
+  <div class="other-informations" *ngIf="!errorMessage">
+    <div class="row">
+      <div class="col-md-6 icon-column">
+        <img
+          src="../../assets/icons8-temperature-high-100.png"
+          alt="max_temp"
+        />
+        {{ weatherData?.main?.temp_max }}
+      </div>
+      <div class="col-md-6 icon-column">
+        <img src="../../assets/icons8-temperature-low-100.png" alt="min_temp" />
+        {{ weatherData?.main?.temp_min }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 icon-column">
+        <img src="../../assets/icons8-humidity-64.png" alt="humidity" />
+        {{ weatherData?.main?.humidity }}
+      </div>
+      <div class="col-md-6 icon-column">
+        <img src="../../assets/icons8-wind-100.png" alt="min_temp" />
+        {{ weatherData?.wind?.speed }}
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-danger danger-container" *ngIf="errorMessage">
     <h1>An error Occurred!</h1>
     <p>{{ errorMessage }}</p>
     <div class="btn btn-danger" (click)="onHandleError()">Okay</div>
