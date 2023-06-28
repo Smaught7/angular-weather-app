@@ -4,7 +4,12 @@
 
   .card-container {
     background: #706fd3;
+    box-shadow: 13px -7px 42px 3px #000;
+    border: 0;
 
+    .data-container {
+      height: 100%;
+    }
     h1 {
       color: #fff;
       text-align: center;

@@ -1,20 +1,14 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Weather } from '../weather.model';
 import { Subject, takeUntil } from 'rxjs';
 import { WeatherService } from '../weather.service';
 
 @Component({
-  selector: 'app-weather-details',
-  templateUrl: './weather-details.component.html',
-  styleUrls: ['./weather-details.component.scss'],
+  selector: 'app-weather-information',
+  templateUrl: './weather-information.component.html',
+  styleUrls: ['./weather-information.component.scss'],
 })
-export class WeatherDetailsComponent implements OnInit, OnDestroy {
+export class WeatherInformationComponent implements OnInit, OnDestroy {
   @Input() weatherData!: Weather;
   @Input() isLoading!: boolean;
   @Input() error!: Subject<string | null>;
@@ -42,11 +36,15 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
       if (timeOffsetDate < 0) {
         const offsetFromMidnight = 24 + timeOffsetDate;
         this.weatherService.calculateTimeOfDay(offsetFromMidnight);
-        return `${offsetFromMidnight}:${currentDate.getMinutes()}`;
+        return `${offsetFromMidnight
+          .toString()
+          .padStart(2, '0')}:${currentDate.getMinutes()}`;
       }
 
       this.weatherService.calculateTimeOfDay(timeOffsetDate);
-      return `${timeOffsetDate}:${currentDate.getMinutes()}`;
+      return `${timeOffsetDate
+        .toString()
+        .padStart(2, '0')}:${currentDate.getMinutes()}`;
     }
 
     return null;
