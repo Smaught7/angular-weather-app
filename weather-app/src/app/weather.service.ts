@@ -16,7 +16,7 @@ export class WeatherService {
   fetchData(city: string) {
     return this.httpClient
       .get<Weather>(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
       )
       .pipe(
         map((response) => {

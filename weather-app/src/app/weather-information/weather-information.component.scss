@@ -1,0 +1,57 @@
+.main-information {
+  position: relative;
+  min-width: 450px;
+  min-height: 250px;
+  background-size: cover;
+
+  p {
+    color: white;
+    z-index: 2;
+  }
+
+  p:first-child {
+    font-size: 3rem;
+    font-weight: 600;
+  }
+
+  p:last-child {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  &.night {
+    background-image: url("../../assets/night.jpg");
+  }
+  &.morning {
+    background-image: url("../../assets/morning.jpg");
+  }
+  &.afternoon {
+    background-image: url("../../assets/afternoon.jpg");
+  }
+  &.evening {
+    background-image: url("../../assets/sunset.jpg");
+  }
+}
+
+.other-informations {
+  .icon-column {
+    text-align: center;
+    img {
+      max-width: 35px;
+    }
+  }
+}
+
+.danger-container {
+  max-width: 450px;
+}

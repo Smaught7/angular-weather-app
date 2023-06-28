@@ -4,11 +4,11 @@ import { Subject, takeUntil } from 'rxjs';
 import { WeatherService } from '../weather.service';
 
 @Component({
-  selector: 'app-weather-details',
-  templateUrl: './weather-details.component.html',
-  styleUrls: ['./weather-details.component.scss'],
+  selector: 'app-weather-information',
+  templateUrl: './weather-information.component.html',
+  styleUrls: ['./weather-information.component.scss'],
 })
-export class WeatherDetailsComponent implements OnInit, OnDestroy {
+export class WeatherInformationComponent implements OnInit, OnDestroy {
   @Input() weatherData!: Weather;
   @Input() isLoading!: boolean;
   @Input() error!: Subject<string | null>;
