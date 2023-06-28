@@ -1,3 +1,24 @@
-input {
-  border-radius: 2rem;
+.search {
+  // min-width: 450px;
+  // min-height: 250px;
+  // background-size: cover;
+
+  input {
+    border-radius: 2rem;
+    background-color: #706fd3;
+    border-color: #706fd3;
+    padding: 0.25rem;
+    text-align: center;
+    border: 1px solid #706fd3;
+
+    &:focus {
+      background-color: #706fd3;
+      border: 1px solid #706fd3;
+      color: #fff;
+    }
+
+    &::placeholder {
+      color: #fff;
+    }
+  }
 }

@@ -1,11 +1,15 @@
 <div
   class="container-fluid d-flex justify-content-center align-items-center flex-column weather-container"
 >
-  <h1>Weather App!</h1>
-  <app-search-city (newItemEvent)="setCity($event)"></app-search-city>
-  <app-weather-details
-    [weatherData]="weatherData"
-    [isLoading]="isLoading"
-    [error]="error"
-  ></app-weather-details>
+  <div class="card h-75 card-container">
+    <div class="header-container">
+      <h1 class="py-3">Weather App!</h1>
+      <app-search-city (newItemEvent)="setCity($event)"></app-search-city>
+    </div>
+    <app-weather-details
+      [weatherData]="weatherData"
+      [isLoading]="isLoading"
+      [error]="error"
+    ></app-weather-details>
+  </div>
 </div>

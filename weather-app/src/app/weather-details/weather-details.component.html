@@ -1,8 +1,14 @@
-<p *ngIf="isLoading && !errorMessage">LOADING...</p>
-<p>{{ weatherData?.name }}</p>
-<p>{{ weatherData?.main?.humidity }}</p>
-<p>{{ setDateFromTimezone() }}</p>
-<div class="alert alert-danger" *ngIf="errorMessage">
-  <h1>An error Occurred!</h1>
-  <p>{{ errorMessage }}</p>
+<div class="main-information" [ngClass]="weatherService.timeOfDay">
+  <p *ngIf="isLoading && !errorMessage">LOADING...</p>
+  <p>{{ weatherData?.name }}</p>
+  <!-- <p>{{weatherData}}</p> -->
+  <p>{{ setDateFromTimezone() }}</p>
+</div>
+<div class="other-informations">
+  <p>{{ weatherData?.main?.humidity }}</p>
+  <div class="alert alert-danger" *ngIf="errorMessage">
+    <h1>An error Occurred!</h1>
+    <p>{{ errorMessage }}</p>
+    <div class="btn btn-danger" (click)="onHandleError()">Okay</div>
+  </div>
 </div>

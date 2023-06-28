@@ -8,6 +8,7 @@ import { WeatherService } from '../weather.service';
 })
 export class SearchCityComponent {
   @Output() newItemEvent = new EventEmitter<string>();
+
   public cityName = '';
 
   constructor(public weatherService: WeatherService) {}
