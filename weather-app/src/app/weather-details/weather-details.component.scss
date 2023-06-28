@@ -1,0 +1,18 @@
+.main-information {
+  min-width: 450px;
+  min-height: 250px;
+  background-size: cover;
+
+  &.night {
+    background-image: url("../../assets/night.jpg");
+  }
+  &.morning {
+    background-image: url("../../assets/morning.jpg");
+  }
+  &.afternoon {
+    background-image: url("../../assets/afternoon.jpg");
+  }
+  &.evening {
+    background-image: url("../../assets/sunset.jpg");
+  }
+}

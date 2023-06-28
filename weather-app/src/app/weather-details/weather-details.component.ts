@@ -1,4 +1,10 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { Weather } from '../weather.model';
 import { Subject, takeUntil } from 'rxjs';
 import { WeatherService } from '../weather.service';

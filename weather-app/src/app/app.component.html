@@ -2,8 +2,10 @@
   class="container-fluid d-flex justify-content-center align-items-center flex-column weather-container"
 >
   <div class="card h-75 card-container">
-    <h1 class="py-3">Weather App!</h1>
-    <app-search-city (newItemEvent)="setCity($event)"></app-search-city>
+    <div class="header-container">
+      <h1 class="py-3">Weather App!</h1>
+      <app-search-city (newItemEvent)="setCity($event)"></app-search-city>
+    </div>
     <app-weather-details
       [weatherData]="weatherData"
       [isLoading]="isLoading"

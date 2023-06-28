@@ -1,13 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  BehaviorSubject,
-  Observable,
-  Subject,
-  catchError,
-  map,
-  throwError,
-} from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
 import { Weather } from './weather.model';
 
 const API_KEY = '8639b23e3320bcafa3ac0812aa770395';
@@ -16,7 +9,7 @@ const API_KEY = '8639b23e3320bcafa3ac0812aa770395';
   providedIn: 'root',
 })
 export class WeatherService {
-  private sharedData = new BehaviorSubject<string>('');
+  public timeOfDay!: string;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -35,22 +28,17 @@ export class WeatherService {
       );
   }
 
-  getSharedData(): Observable<string> {
-    return this.sharedData.asObservable();
-  }
-
   calculateTimeOfDay(hours: number) {
-    let timeOfDay = '';
-    if (hours <= 6 && hours > 0) {
-      timeOfDay = 'night';
+    if (hours <= 6 && hours >= 0) {
+      this.timeOfDay = 'night';
     } else if (hours > 6 && hours <= 12) {
-      timeOfDay = 'morning';
+      this.timeOfDay = 'morning';
     } else if (hours > 12 && hours <= 18) {
-      timeOfDay = 'afternoon';
+      this.timeOfDay = 'afternoon';
     } else if (hours > 18 && hours <= 24) {
-      timeOfDay = 'evening';
+      this.timeOfDay = 'evening';
     }
 
-    this.sharedData.next(timeOfDay);
+    return this.timeOfDay;
   }
 }

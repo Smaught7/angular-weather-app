@@ -1,10 +1,11 @@
-<div class="search" [ngClass]="timeOfDay">
+<div class="search">
   <form #search="ngForm" (submit)="onSubmit()">
     <input
       placeholder="Search your city"
       type="text"
       name="text"
       [(ngModel)]="cityName"
+      autocomplete="off"
     />
   </form>
 </div>

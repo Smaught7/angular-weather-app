@@ -1,22 +1,24 @@
 .search {
-  min-width: 450px;
-  min-height: 250px;
-  background-size: cover;
+  // min-width: 450px;
+  // min-height: 250px;
+  // background-size: cover;
 
   input {
     border-radius: 2rem;
-  }
+    background-color: #706fd3;
+    border-color: #706fd3;
+    padding: 0.25rem;
+    text-align: center;
+    border: 1px solid #706fd3;
 
-  &.night {
-    background-image: url("../../assets/night.jpg");
-  }
-  &.morning {
-    background-image: url("../../assets/morning.jpg");
-  }
-  &.afternoon {
-    background-image: url("../../assets/afternoon.jpg");
-  }
-  &.evening {
-    background-image: url("../../assets/sunset.jpg");
+    &:focus {
+      background-color: #706fd3;
+      border: 1px solid #706fd3;
+      color: #fff;
+    }
+
+    &::placeholder {
+      color: #fff;
+    }
   }
 }
