@@ -9,6 +9,7 @@ import { Weather } from 'src/app/weather.model';
 export class WeatherDetailsComponent {
   @Input() weatherData?: Weather;
   @Input() errorMessage!: string | null;
+  @Input() isLoading!: boolean;
 
   onHandleError() {
     this.errorMessage = null;
