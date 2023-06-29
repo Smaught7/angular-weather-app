@@ -2,7 +2,6 @@
   class="main-information d-flex flex-column justify-content-center align-items-center"
   [ngClass]="weatherService.timeOfDay"
 >
-  <p *ngIf="isLoading && !errorMessage">LOADING...</p>
   <p>{{ weatherData?.name }}</p>
   <p>{{ weatherService.setDateFromTimezone() }}</p>
   <p>{{ weatherData?.main?.temp | number : "1.0-0" }}°C</p>
@@ -10,4 +9,5 @@
 <app-weather-details
   [weatherData]="weatherData"
   [errorMessage]="errorMessage"
+  [isLoading]="isLoading"
 ></app-weather-details>
