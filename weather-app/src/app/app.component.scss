@@ -5,6 +5,7 @@
   .card-container {
     background: #706fd3;
     box-shadow: 13px -7px 42px 3px #000;
+    min-width: 450px;
     border: 0;
 
     .data-container {
@@ -14,6 +15,14 @@
       color: #fff;
       text-align: center;
       margin: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .weather-container {
+    .card-container {
+      min-width: 290px;
     }
   }
 }
