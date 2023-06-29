@@ -44,6 +44,11 @@
 }
 
 .other-informations {
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   .icon-column {
     text-align: center;
     img {
@@ -55,4 +60,6 @@
 
 .danger-container {
   max-width: 450px;
+  margin: 0;
+  min-height: 250px;
 }
