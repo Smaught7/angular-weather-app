@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { WeatherService } from './weather.service';
 import { Weather } from './weather.model';
 import { Subject } from 'rxjs';
@@ -10,8 +10,7 @@ import { Subject } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   public weatherData!: Weather;
-  public city = 'Warsaw';
-
+  private city = 'Warsaw';
   isLoading = false;
   error = new Subject<string | null>();
 
@@ -32,7 +31,6 @@ export class AppComponent implements OnInit {
       (data) => {
         this.isLoading = false;
         this.weatherData = data;
-        console.log(this.weatherData);
       },
       (error) => {
         this.isLoading = false;

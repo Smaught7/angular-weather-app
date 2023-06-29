@@ -1,0 +1,74 @@
+<div
+  class="other-informations d-flex flex-colum justify-content-between py-3"
+  *ngIf="!errorMessage"
+>
+  <div class="row">
+    <div
+      class="col-md-6 col-sm-1 col-xs-1 py-2 icon-column"
+      data-toggle="tooltip"
+      title="Pressure"
+    >
+      <img
+        src="../../assets/icons8-pressure-100.png"
+        alt="max_temp"
+        class="pr-3"
+      />
+      {{ weatherData?.main?.pressure | number : "1.0-0" }}hPa
+    </div>
+    <div
+      class="col-md-6 col-sm-1 col-xs-1 py-2 icon-column"
+      data-toggle="tooltip"
+      title="% amount clouds on the sky"
+    >
+      <img src="../../assets/icons8-cloud-100.png" alt="min_temp" />
+      {{ weatherData?.clouds?.all | number : "1.0-0" }}%
+    </div>
+  </div>
+
+  <div class="row">
+    <div
+      class="col-md-6 col-sm-1 col-xs-1 py-2 icon-column"
+      data-toggle="tooltip"
+      title="Max temperature"
+    >
+      <img
+        src="../../assets/icons8-temperature-high-100.png"
+        alt="max_temp"
+        class="pr-3"
+      />
+      {{ weatherData?.main?.temp_max | number : "1.0-0" }}°C
+    </div>
+    <div
+      class="col-md-6 col-sm-1 col-xs-1 py-2 icon-column"
+      data-toggle="tooltip"
+      title="Min temperature"
+    >
+      <img src="../../assets/icons8-temperature-low-100.png" alt="min_temp" />
+      {{ weatherData?.main?.temp_min | number : "1.0-0" }}°C
+    </div>
+  </div>
+
+  <div class="row">
+    <div
+      class="col-md-6 col-sm-1 col-xs-1 py-2 icon-column"
+      data-toggle="tooltip"
+      title="Humidity"
+    >
+      <img src="../../assets/icons8-humidity-64.png" alt="humidity" />
+      {{ weatherData?.main?.humidity }}%
+    </div>
+    <div
+      class="col-md-6 col-sm-1 col-xs-1 py-2 icon-column"
+      data-toggle="tooltip"
+      title="Wind speed"
+    >
+      <img src="../../assets/icons8-wind-100.png" alt="wind" />
+      {{ weatherData?.wind?.speed | number : "1.0-1" }}m/s
+    </div>
+  </div>
+</div>
+<div class="alert alert-danger danger-container" *ngIf="errorMessage">
+  <h1>An error Occurred!</h1>
+  <p>{{ errorMessage }}</p>
+  <div class="btn btn-danger" (click)="onHandleError()">Okay</div>
+</div>

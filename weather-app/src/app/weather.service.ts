@@ -10,6 +10,9 @@ const API_KEY = '8639b23e3320bcafa3ac0812aa770395';
 })
 export class WeatherService {
   public timeOfDay!: string;
+  public weatherData!: Weather;
+
+  private readonly warsawTimezoneOffset = 7200;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -20,12 +23,41 @@ export class WeatherService {
       )
       .pipe(
         map((response) => {
+          this.weatherData = response;
           return response;
         }),
         catchError((error) => {
           return throwError(() => error);
         })
       );
+  }
+
+  setDateFromTimezone() {
+    if (this.weatherData && this.weatherData.timezone) {
+      const currentDate = new Date();
+      const timezoneOffset =
+        this.weatherData.timezone / 3600 - this.warsawTimezoneOffset / 3600;
+
+      const timeOffsetDate = currentDate.getHours() + timezoneOffset;
+
+      if (timeOffsetDate < 0) {
+        const offsetFromMidnight = 24 + timeOffsetDate;
+        this.calculateTimeOfDay(offsetFromMidnight);
+
+        return `${offsetFromMidnight.toString().padStart(2, '0')}:${currentDate
+          .getMinutes()
+          .toString()
+          .padStart(2, '0')}`;
+      }
+
+      this.calculateTimeOfDay(timeOffsetDate);
+      return `${timeOffsetDate.toString().padStart(2, '0')}:${currentDate
+        .getMinutes()
+        .toString()
+        .padStart(2, '0')}`;
+    }
+
+    return null;
   }
 
   calculateTimeOfDay(hours: number) {
