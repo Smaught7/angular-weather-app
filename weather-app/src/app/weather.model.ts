@@ -4,10 +4,12 @@ export interface Weather {
   timezone: number;
   main: Main;
   wind: Wind;
+  clouds: Clouds;
 }
 
 interface Main {
   humidity: number;
+  pressure: number;
   temp: number;
   temp_max: number;
   temp_min: number;
@@ -15,4 +17,8 @@ interface Main {
 
 interface Wind {
   speed: number;
+}
+
+interface Clouds {
+  all: number;
 }

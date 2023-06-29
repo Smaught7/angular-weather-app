@@ -16,6 +16,7 @@ export class WeatherInformationComponent implements OnInit, OnDestroy {
   public errorMessage!: string | null;
   private destroy$ = new Subject<void>();
   private readonly warsawTimezoneOffset = 7200;
+  public showDetails = false;
 
   constructor(public weatherService: WeatherService) {}
 
@@ -36,15 +37,18 @@ export class WeatherInformationComponent implements OnInit, OnDestroy {
       if (timeOffsetDate < 0) {
         const offsetFromMidnight = 24 + timeOffsetDate;
         this.weatherService.calculateTimeOfDay(offsetFromMidnight);
-        return `${offsetFromMidnight
+
+        return `${offsetFromMidnight.toString().padStart(2, '0')}:${currentDate
+          .getMinutes()
           .toString()
-          .padStart(2, '0')}:${currentDate.getMinutes()}`;
+          .padStart(2, '0')}`;
       }
 
       this.weatherService.calculateTimeOfDay(timeOffsetDate);
-      return `${timeOffsetDate
+      return `${timeOffsetDate.toString().padStart(2, '0')}:${currentDate
+        .getMinutes()
         .toString()
-        .padStart(2, '0')}:${currentDate.getMinutes()}`;
+        .padStart(2, '0')}`;
     }
 
     return null;
