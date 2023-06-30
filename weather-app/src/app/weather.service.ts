@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, throwError } from 'rxjs';
+import { BehaviorSubject, Subject, catchError, map, throwError } from 'rxjs';
 import { Weather } from './weather.model';
 
 const API_KEY = '8639b23e3320bcafa3ac0812aa770395';
@@ -11,10 +11,19 @@ const API_KEY = '8639b23e3320bcafa3ac0812aa770395';
 export class WeatherService {
   public timeOfDay!: string;
   public weatherData!: Weather;
+  public isErrorClose = new Subject<boolean>();
 
   private readonly warsawTimezoneOffset = 7200;
 
   constructor(private httpClient: HttpClient) {}
+
+  setIsErrorClose(close: boolean) {
+    this.isErrorClose.next(close);
+  }
+
+  getIsErrorClose() {
+    return this.isErrorClose.asObservable();
+  }
 
   fetchData(city: string) {
     return this.httpClient

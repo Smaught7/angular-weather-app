@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   public weatherData!: Weather;
   private city = 'Warsaw';
   isLoading = false;
+  isError = false;
   error = new Subject<string | null>();
 
   constructor(private weatherService: WeatherService) {}
@@ -34,6 +35,7 @@ export class AppComponent implements OnInit {
       },
       (error) => {
         this.isLoading = false;
+        this.isError = true;
         this.error.next(error.message);
       }
     );
