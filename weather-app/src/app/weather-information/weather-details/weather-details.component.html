@@ -4,11 +4,7 @@
 >
   <div class="loader" *ngIf="isLoading && !errorMessage">LOADING...</div>
   <div class="row">
-    <div
-      class="col-md-6 col-sm-1 col-xs-1 py-2 icon-column"
-      data-toggle="tooltip"
-      title="Pressure"
-    >
+    <div class="col py-2 icon-column" data-toggle="tooltip" title="Pressure">
       <img
         src="../../assets/icons8-pressure-100.png"
         alt="max_temp"
@@ -17,7 +13,7 @@
       {{ weatherData?.main?.pressure | number : "1.0-0" }}hPa
     </div>
     <div
-      class="col-md-6 col-sm-1 col-xs-1 py-2 icon-column"
+      class="col py-2 icon-column"
       data-toggle="tooltip"
       title="% amount clouds on the sky"
     >
@@ -28,7 +24,7 @@
 
   <div class="row">
     <div
-      class="col-md-6 col-sm-1 col-xs-1 py-2 icon-column"
+      class="col py-2 icon-column"
       data-toggle="tooltip"
       title="Max temperature"
     >
@@ -40,7 +36,7 @@
       {{ weatherData?.main?.temp_max | number : "1.0-0" }}°C
     </div>
     <div
-      class="col-md-6 col-sm-1 col-xs-1 py-2 icon-column"
+      class="col py-2 icon-column"
       data-toggle="tooltip"
       title="Min temperature"
     >
@@ -50,19 +46,11 @@
   </div>
 
   <div class="row">
-    <div
-      class="col-md-6 col-sm-1 col-xs-1 py-2 icon-column"
-      data-toggle="tooltip"
-      title="Humidity"
-    >
+    <div class="col py-2 icon-column" data-toggle="tooltip" title="Humidity">
       <img src="../../assets/icons8-humidity-64.png" alt="humidity" />
       {{ weatherData?.main?.humidity }}%
     </div>
-    <div
-      class="col-md-6 col-sm-1 col-xs-1 py-2 icon-column"
-      data-toggle="tooltip"
-      title="Wind speed"
-    >
+    <div class="col py-2 icon-column" data-toggle="tooltip" title="Wind speed">
       <img src="../../assets/icons8-wind-100.png" alt="wind" />
       {{ weatherData?.wind?.speed | number : "1.0-1" }}m/s
     </div>

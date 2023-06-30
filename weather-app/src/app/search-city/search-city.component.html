@@ -6,6 +6,7 @@
       name="text"
       [(ngModel)]="cityName"
       autocomplete="off"
+      disabled="{{ disabledInputDuringError() }}"
     />
   </form>
 </div>

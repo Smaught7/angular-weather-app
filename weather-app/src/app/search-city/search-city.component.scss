@@ -8,6 +8,11 @@
     border: 1px solid #474787;
     transition: 0.5s;
 
+    &:disabled {
+      background-color: #1e1e50;
+      cursor: not-allowed;
+    }
+
     &:focus {
       background-color: #706fd3;
       border: 1px solid #474787;
